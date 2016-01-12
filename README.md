@@ -1,4 +1,4 @@
-#Atom Heart Microengine
+#Atom Heart Microengine v0.1a
 
 This is a small C++/SFML game engine (or a scaffolding really)
 
