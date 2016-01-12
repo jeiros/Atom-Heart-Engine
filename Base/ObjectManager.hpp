@@ -1,5 +1,5 @@
-#ifndef __SFMLS_OBJECTMANAGER__
-#define __SFMLS_OBJECTMANAGER__
+#ifndef __ATOMHEART_OBJECTMANAGER__
+#define __ATOMHEART_OBJECTMANAGER__
 
 #include "Object.hpp"
 

@@ -1,5 +1,5 @@
-#ifndef __SFMLS_RESOURCES_H__
-#define __SFMLS_RESOURCES_H__
+#ifndef __ATOMHEART_RESOURCES_H__
+#define __ATOMHEART_RESOURCES_H__
 
 class Resources {
 public:

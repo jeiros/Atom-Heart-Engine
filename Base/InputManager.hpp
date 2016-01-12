@@ -1,5 +1,5 @@
-#ifndef __SFMS_INPUTMANAGER_H_
-#define __SFMS_INPUTMANAGER_H_
+#ifndef __ATOMHEART_INPUTMANAGER_H_
+#define __ATOMHEART_INPUTMANAGER_H_
 
 #include <SFML/Graphics.hpp>
 #include <map>

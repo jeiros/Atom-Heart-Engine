@@ -1,5 +1,5 @@
-#ifndef __SFMLS_SCENE__
-#define __SFMLS_SCENE__
+#ifndef __ATOMHEART_SCENE__
+#define __ATOMHEART_SCENE__
 
 #include "ObjectManager.hpp"
 #include "../UI/UIManager.hpp"

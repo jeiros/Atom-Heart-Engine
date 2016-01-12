@@ -1,5 +1,5 @@
-#ifndef __SFMLS_OBJECT_H__
-#define __SFMLS_OBJECT_H__
+#ifndef __ATOMHEART_OBJECT_H__
+#define __ATOMHEART_OBJECT_H__
 
 #include "InputManager.hpp"
 

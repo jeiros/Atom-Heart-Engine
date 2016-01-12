@@ -1,5 +1,5 @@
-#ifndef __SFMLS_GAME_H__
-#define __SFMLS_GAME_H__
+#ifndef __ATOMHEART_GAME_H__
+#define __ATOMHEART_GAME_H__
 
 #include <SFML/Graphics.hpp>
 #include <list>

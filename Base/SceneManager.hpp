@@ -1,5 +1,5 @@
-#ifndef __SFMLS_SCENEMANAGER__
-#define __SFMLS_SCENEMANAGER__
+#ifndef __ATOMHEART_SCENEMANAGER__
+#define __ATOMHEART_SCENEMANAGER__
 
 class SceneManager {
 public:

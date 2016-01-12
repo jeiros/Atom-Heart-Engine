@@ -1,5 +1,5 @@
-#ifndef __SFMLS_UIELEMENT__
-#define __SFMLS_UIELEMENT__
+#ifndef __ATOMHEART_UIELEMENT__
+#define __ATOMHEART_UIELEMENT__
 
 #include "../Base/Object.hpp"
 
