@@ -10,6 +10,7 @@ public:
   SceneManager();
   ~SceneManager();
 
+  int getCurrentScene();
   void switchTo(int scene_n);
   void drawScene();
   void updateScene(float deltaTime);

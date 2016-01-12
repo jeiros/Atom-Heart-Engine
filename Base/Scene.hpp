@@ -9,6 +9,8 @@ public:
   Scene();
   ~Scene();
 
+  void draw();
+  void update(float deltaTime);
 private:
   ObjectManager om;
   UIManager uim;
