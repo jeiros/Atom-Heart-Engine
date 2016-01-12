@@ -3,8 +3,6 @@
 
 #include <string>
 
-// Testing
-
 Game::Game(int scrwidth, int scrheight, std::string title, int style) :
   window(sf::VideoMode(scrwidth, scrheight), title, style),
   inputManager(&window)
@@ -32,8 +30,12 @@ void Game::run() {
 
 void Game::render() {
   window.clear();
-  draw();
+  sm.drawScene();
   window.display();
+}
+
+void Game::update(float deltaTime) {
+  sm.updateScene(deltaTime);
 }
 
 InputManager* Game::getInputManager() {
