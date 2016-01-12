@@ -2,7 +2,12 @@
 #define __ATOMHEART_UIMANAGER__
 
 class UIManager {
-  // TODO
+public:
+  UIManager();
+  ~UIManager();
+
+  void draw();
+  void update(float deltaTime);
 };
 
 #endif

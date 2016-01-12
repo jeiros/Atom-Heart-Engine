@@ -38,6 +38,10 @@ void Game::update(float deltaTime) {
   sm.updateScene(deltaTime);
 }
 
+void Game::processEvents() {
+  
+}
+
 InputManager* Game::getInputManager() {
   return &inputManager;
 }

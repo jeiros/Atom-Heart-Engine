@@ -20,7 +20,7 @@ protected:
   // Necessitem que els punters als objectes es mantinguin valids
   // per aixo utilitzem una llista en comptes de un vector.
   // TODO: Implementar pooled list per reduir memory overhead
-  std::list<Object> object_list;
+  std::list<std::unique_ptr<Object>> object_list;
 };
 
 #endif
