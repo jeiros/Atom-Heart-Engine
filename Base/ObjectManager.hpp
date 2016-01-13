@@ -15,13 +15,14 @@ public:
   void update(float deltaTime);
   void draw();
 
-  Object* spawnObject();
+  std::shared_ptr<Object> spawnObject();
 
+  void setGame(Game *game);
 protected:
   // Necessitem que els punters als objectes es mantinguin valids
   // per aixo utilitzem una llista en comptes de un vector.
   // TODO: Implementar pooled list per reduir memory overhead
-  std::list<Object*> object_list;
+  std::list<std::shared_ptr<Object>> object_list;
 
   Scene *scene;
   Game *game;

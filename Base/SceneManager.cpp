@@ -5,10 +5,8 @@
 SceneManager::SceneManager(Game *game) {
   this->game = game;
 
-  scenes = std::vector<Scene>(6);
-
+  scenes = std::vector<std::shared_ptr<Scene>>();
   current_scene = 0;
-  scenes[0] = Scene(game);
 }
 
 SceneManager::~SceneManager() {}
@@ -22,11 +20,11 @@ void SceneManager::switchTo(int scene_n) {
 }
 
 void SceneManager::drawScene() {
-  scenes[current_scene].draw();
+  scenes[current_scene]->draw();
 }
 
 void SceneManager::updateScene(float deltaTime) {
-  scenes[current_scene].update(deltaTime);
+  scenes[current_scene]->update(deltaTime);
 }
 
 sf::RenderWindow* SceneManager::getWindow() {
@@ -35,4 +33,8 @@ sf::RenderWindow* SceneManager::getWindow() {
 
 InputManager* SceneManager::getInputManager() {
   return game->getInputManager();
+}
+
+void SceneManager::addScene(Scene *scene) {
+  scenes.push_back(std::shared_ptr<Scene>(scene));
 }

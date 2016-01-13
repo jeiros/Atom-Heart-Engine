@@ -19,10 +19,11 @@ public:
 
   sf::RenderWindow* getWindow();
   InputManager* getInputManager();
+  void addScene(Scene *scene);
 
 private:
   int current_scene = 0;
-  std::vector<Scene> scenes;
+  std::vector<std::shared_ptr<Scene>> scenes;
 
   Game *game;
 };

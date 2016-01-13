@@ -18,6 +18,7 @@ class Game
   sf::RenderWindow*   getWindow();
 
   void setTimeStep(float n_timestep);
+  void addScene(Scene *scene);
 private:
   SceneManager sm;
   InputManager        inputManager;

@@ -47,6 +47,7 @@ public:
   // Resize the object specifiying a multiplier to the current size
   void resize(float multiplier);
 
+
 protected:
   sf::Vector2f position;
   sf::Vector2f size;

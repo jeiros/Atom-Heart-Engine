@@ -8,7 +8,6 @@ class Game;
 class Scene {
 public:
   Scene();
-  Scene(Game *game);
   ~Scene();
 
   void draw();
@@ -16,6 +15,8 @@ public:
 
   sf::RenderWindow* getWindow();
   InputManager* getInputManager();
+
+  void setGame(Game *n_game);
 private:
   ObjectManager om;
   UIManager uim;

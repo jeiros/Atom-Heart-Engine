@@ -3,14 +3,9 @@
 #include "../UI/UIManager.hpp"
 #include "Game.hpp"
 
-Scene::Scene()
-  : om(nullptr)
+Scene::Scene() :
+  om(nullptr)
 {}
-
-Scene::Scene(Game *game)
-  : om(game) {
-  this->game = game;
-}
 
 Scene::~Scene() {}
 
@@ -30,4 +25,10 @@ sf::RenderWindow* Scene::getWindow() {
 
 InputManager* Scene::getInputManager() {
   return game->getInputManager();
+}
+
+void Scene::setGame(Game *n_game) {
+  game = n_game;
+  om.setGame(n_game);
+  //uim.setGame(n_game);
 }
