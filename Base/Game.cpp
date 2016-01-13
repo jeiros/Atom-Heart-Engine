@@ -2,11 +2,31 @@
 #include "Resources.hpp"
 
 #include <string>
+#include <execinfo.h>
+#include <stdio.h>
+#include <signal.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+void crash_handler(int sig) {
+  void *array[10];
+  size_t size;
+
+  // get void*'s for all entries on the stack
+  size = backtrace(array, 10);
+
+  // print out all the frames to stderr
+  fprintf(stderr, "Error: signal %d:\n", sig);
+  backtrace_symbols_fd(array, size, STDERR_FILENO);
+  exit(1);
+}
 
 Game::Game(int scrwidth, int scrheight, std::string title, int style) :
   window(sf::VideoMode(scrwidth, scrheight), title, style),
-  inputManager(&window)
+  inputManager(&window),
+  sm(this)
 {
+  signal(SIGSEGV, crash_handler);
   Resources::load();
 }
 
@@ -23,6 +43,7 @@ void Game::run() {
     float deltaTime = c.restart().asSeconds();
 
     processEvents();
+    // TODO: Implement fixed timestep
     update(deltaTime);
     render();
   }
@@ -39,7 +60,19 @@ void Game::update(float deltaTime) {
 }
 
 void Game::processEvents() {
-  
+  sf::Event event;
+  while(window.pollEvent(event)) {
+    switch(event.type) {
+    case sf::Event::Closed:
+      window.close();
+      break;
+    case sf::Event::Resized:
+      //TODO
+      break;
+    default:
+      inputManager.parseEvent(event);
+    }
+  }
 }
 
 InputManager* Game::getInputManager() {
@@ -48,4 +81,8 @@ InputManager* Game::getInputManager() {
 
 sf::RenderWindow* Game::getWindow() {
   return &window;
+}
+
+void Game::setTimeStep(float n_timestep) {
+  timeStep = n_timestep;
 }

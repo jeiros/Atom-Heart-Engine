@@ -5,9 +5,11 @@
 
 #include <vector>
 
+class Game;
+class InputManager;
 class SceneManager {
 public:
-  SceneManager();
+  SceneManager(Game *game);
   ~SceneManager();
 
   int getCurrentScene();
@@ -15,9 +17,14 @@ public:
   void drawScene();
   void updateScene(float deltaTime);
 
+  sf::RenderWindow* getWindow();
+  InputManager* getInputManager();
+
 private:
   int current_scene = 0;
   std::vector<Scene> scenes;
+
+  Game *game;
 };
 
 #endif

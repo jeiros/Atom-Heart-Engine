@@ -25,7 +25,7 @@ sf::Vector2i InputManager::getMousePosition() {
   return mousePos;
 }
 
-void InputManager::parseEvents(sf::Event event) {
+void InputManager::parseEvent(sf::Event event) {
   switch (event.type) {
   case sf::Event::KeyPressed:
     if (keyboard_map.count(event.key.code) > 0) {

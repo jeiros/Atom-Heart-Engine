@@ -6,9 +6,10 @@
 #include <list>
 #include <memory>
 
+class Object;
 class ObjectManager {
 public:
-  ObjectManager();
+  ObjectManager(Game *game);
   ~ObjectManager();
 
   void update(float deltaTime);
@@ -20,7 +21,10 @@ protected:
   // Necessitem que els punters als objectes es mantinguin valids
   // per aixo utilitzem una llista en comptes de un vector.
   // TODO: Implementar pooled list per reduir memory overhead
-  std::list<std::unique_ptr<Object>> object_list;
+  std::list<Object*> object_list;
+
+  Scene *scene;
+  Game *game;
 };
 
 #endif

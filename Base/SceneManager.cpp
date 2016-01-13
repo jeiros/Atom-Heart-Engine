@@ -1,6 +1,16 @@
 #include "SceneManager.hpp"
+#include "InputManager.hpp"
+#include "Game.hpp"
 
-SceneManager::SceneManager() {}
+SceneManager::SceneManager(Game *game) {
+  this->game = game;
+
+  scenes = std::vector<Scene>(6);
+
+  current_scene = 0;
+  scenes[0] = Scene(game);
+}
+
 SceneManager::~SceneManager() {}
 
 int SceneManager::getCurrentScene() {
@@ -17,4 +27,12 @@ void SceneManager::drawScene() {
 
 void SceneManager::updateScene(float deltaTime) {
   scenes[current_scene].update(deltaTime);
+}
+
+sf::RenderWindow* SceneManager::getWindow() {
+  return game->getWindow();
+}
+
+InputManager* SceneManager::getInputManager() {
+  return game->getInputManager();
 }

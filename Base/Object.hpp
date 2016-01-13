@@ -6,9 +6,11 @@
 #include <SFML/Graphics.hpp>
 
 class Game;
+class Scene;
 class Object {
 public:
   // Constructor for object
+  Object();
   Object(Game* g, sf::Vector2f size, sf::Texture& tex, sf::Vector2i spriteCount);
   ~Object();
 
@@ -58,6 +60,7 @@ protected:
   sf::Sprite sprite;
 
   Game* game;
+  Scene* scene;
   InputManager* inputManager;
 };
 

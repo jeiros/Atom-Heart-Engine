@@ -16,10 +16,14 @@ class Game
 
   InputManager*       getInputManager();
   sf::RenderWindow*   getWindow();
+
+  void setTimeStep(float n_timestep);
 private:
   SceneManager sm;
   InputManager        inputManager;
   sf::RenderWindow    window;
+
+  float timeStep;
 
   void render();
   void update(float deltaTime);

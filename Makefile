@@ -1,6 +1,6 @@
 CC=g++
 STD=-std=c++0x
-CFLAGS=-c -Wall -Wpedantic -pedantic-errors -Wextra $(STD)
+CFLAGS=-c -Wall -Wpedantic -pedantic-errors -fpermissive -g -rdynamic -Wextra $(STD)
 BIN=bin/game.x
 LIBS=-lsfml-graphics -lsfml-window -lsfml-system
 OF=bin/object/
@@ -36,11 +36,11 @@ $(OF)InputManager.o: Base/InputManager.cpp
 $(OF)SceneManager.o: Base/SceneManager.cpp
 	$(CC) $(CFLAGS) Base/SceneManager.cpp -o $(OF)SceneManager.o
 
-$(OF)Scene.o: Base/Scene.cpp
-	$(CC) $(CFLAGS) Base/Scene.cpp -o $(OF)Scene.o
-
 $(OF)ObjectManager.o: Base/ObjectManager.cpp
 	$(CC) $(CFLAGS) Base/ObjectManager.cpp -o $(OF)ObjectManager.o
+
+$(OF)Scene.o: Base/Scene.cpp
+	$(CC) $(CFLAGS) Base/Scene.cpp -o $(OF)Scene.o
 
 # UI
 
