@@ -10,4 +10,5 @@ void TestMenuScene::draw() {
 }
 
 void TestMenuScene::update(float deltaTime) {
+  om.update(deltaTime);
 }

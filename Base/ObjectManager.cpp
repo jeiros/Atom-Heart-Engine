@@ -10,7 +10,10 @@ ObjectManager::ObjectManager(Game *game)
 ObjectManager::~ObjectManager() {}
 
 void ObjectManager::update(float deltaTime) {
-
+  for(std::list<std::shared_ptr<Object>>::iterator it = object_list.begin();
+      it != object_list.end(); it++) {
+    (*it)->update(deltaTime);
+  }
 }
 
 void ObjectManager::draw() {
