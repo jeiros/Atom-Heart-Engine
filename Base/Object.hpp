@@ -5,7 +5,7 @@
 
 #include <SFML/Graphics.hpp>
 
-class Game;
+class ObjectManager;
 class Scene;
 class Object {
 public:
@@ -47,7 +47,7 @@ public:
   // Resize the object specifiying a multiplier to the current size
   void resize(float multiplier);
 
-  void setGame(Game *game);
+  void setObjectManager(ObjectManager* n_om);
 protected:
   sf::Vector2f position;
   sf::Vector2f size;
@@ -60,7 +60,7 @@ protected:
   sf::Vector2i spriteNum;
   sf::Sprite sprite;
 
-  Game* game;
+  ObjectManager *om;
   Scene* scene;
   InputManager* inputManager;
 };

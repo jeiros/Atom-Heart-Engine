@@ -1,4 +1,5 @@
 #include "Object.hpp"
+#include "ObjectManager.hpp"
 #include "Game.hpp"
 
 #include <iostream>
@@ -8,7 +9,7 @@ Object::Object() {}
 Object::Object(sf::Vector2f size, sf::Texture& tex, sf::Vector2i spriteCount) :
   size(size), tex(tex), spriteCount(spriteCount)
 {
-  inputManager = game->getInputManager();
+  //inputManager = om->getGame()->getInputManager();
   sprite.setTexture(tex);
 }
 
@@ -27,7 +28,7 @@ void Object::draw() {
                                     ));
 
   sprite.setPosition(position);
-  game->getWindow()->draw(sprite);
+  om->getGame()->getWindow()->draw(sprite);
 }
 
 void Object::update(float deltaTime) {}
@@ -68,6 +69,7 @@ void Object::resize(float multiplier) {
   size = size * multiplier;
 }
 
-void Object::setGame(Game *game) {
-  game = game;
+void Object::setObjectManager(ObjectManager* n_om) {
+  om = n_om;
 }
+

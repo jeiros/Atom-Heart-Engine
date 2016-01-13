@@ -2,6 +2,8 @@
 #include "InputManager.hpp"
 #include "Game.hpp"
 
+#include <iostream>
+
 SceneManager::SceneManager(Game *game) {
   this->game = game;
 
@@ -36,5 +38,6 @@ InputManager* SceneManager::getInputManager() {
 }
 
 void SceneManager::addScene(Scene *scene) {
+  scene->setGame(game);
   scenes.push_back(std::shared_ptr<Scene>(scene));
 }

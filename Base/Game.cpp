@@ -10,7 +10,6 @@ Game::Game(int scrwidth, int scrheight, std::string title, int style) :
   sm(this)
 {
   Resources::load();
-  std::cout << &window << std::endl;
 }
 
 Game::~Game(){}
@@ -61,6 +60,7 @@ void Game::processEvents() {
 void Game::addScene(Scene *scene) {
   scene->setGame(this);
   sm.addScene(scene);
+  std::cout << "game" << std::endl;
 }
 
 InputManager* Game::getInputManager() {

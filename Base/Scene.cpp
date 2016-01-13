@@ -3,6 +3,8 @@
 #include "../UI/UIManager.hpp"
 #include "Game.hpp"
 
+#include <iostream>
+
 Scene::Scene() :
   om(nullptr)
 {}

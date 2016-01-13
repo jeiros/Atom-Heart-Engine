@@ -1,7 +1,7 @@
 #include "ObjectManager.hpp"
 #include "Game.hpp"
 
-#include <stdio.h>
+#include <iostream>
 
 ObjectManager::ObjectManager(Game *game)
 {
@@ -25,6 +25,11 @@ void ObjectManager::setGame(Game *n_game) {
 }
 
 void ObjectManager::spawnObject(Object *obj) {
-  obj->setGame(game);
+  //std::cout << game << std::endl;
+  obj->setObjectManager(this);
   object_list.push_back(std::shared_ptr<Object>(obj));
+}
+
+Game* ObjectManager::getGame() {
+  return game;
 }

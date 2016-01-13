@@ -7,6 +7,7 @@
 #include <memory>
 
 class Object;
+class Game;
 class ObjectManager {
 public:
   ObjectManager(Game *game);
@@ -18,6 +19,7 @@ public:
   void spawnObject(Object *obj);
 
   void setGame(Game *game);
+  Game* getGame();
 protected:
   // Necessitem que els punters als objectes es mantinguin valids
   // per aixo utilitzem una llista en comptes de un vector.
