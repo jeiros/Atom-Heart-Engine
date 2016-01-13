@@ -2,6 +2,7 @@
 #include "Resources.hpp"
 
 #include <string>
+#include <iostream>
 
 Game::Game(int scrwidth, int scrheight, std::string title, int style) :
   window(sf::VideoMode(scrwidth, scrheight), title, style),
@@ -9,6 +10,7 @@ Game::Game(int scrwidth, int scrheight, std::string title, int style) :
   sm(this)
 {
   Resources::load();
+  std::cout << &window << std::endl;
 }
 
 Game::~Game(){}

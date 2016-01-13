@@ -8,7 +8,7 @@
 namespace UI {
   class Widget : public Object {
   public:
-    Widget(Game *g, sf::Vector2f size, sf::Texture& tex, sf::Vector2i spriteCount);
+    Widget(sf::Vector2f size, sf::Texture& tex, sf::Vector2i spriteCount);
     ~Widget();
 
     void setCallback(std::function<void()> delegate);

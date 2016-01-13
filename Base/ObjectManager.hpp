@@ -15,7 +15,7 @@ public:
   void update(float deltaTime);
   void draw();
 
-  std::shared_ptr<Object> spawnObject();
+  void spawnObject(Object *obj);
 
   void setGame(Game *game);
 protected:

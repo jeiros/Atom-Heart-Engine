@@ -11,14 +11,14 @@ class Object {
 public:
   // Constructor for object
   Object();
-  Object(Game* g, sf::Vector2f size, sf::Texture& tex, sf::Vector2i spriteCount);
+  Object(sf::Vector2f size, sf::Texture& tex, sf::Vector2i spriteCount);
   ~Object();
 
   // The game will call this method every frame so the object can update
   virtual void update(float deltaTime) = 0;
 
   // The game will call this method every frame to draw the object
-  virtual void draw() = 0;
+  void draw();
 
   // Get the bounds of the object in View space
   sf::FloatRect getGlobalBounds() const;
@@ -47,7 +47,7 @@ public:
   // Resize the object specifiying a multiplier to the current size
   void resize(float multiplier);
 
-
+  void setGame(Game *game);
 protected:
   sf::Vector2f position;
   sf::Vector2f size;

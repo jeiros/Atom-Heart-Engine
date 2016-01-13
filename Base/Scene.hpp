@@ -10,14 +10,14 @@ public:
   Scene();
   ~Scene();
 
-  void draw();
-  void update(float deltaTime);
+  virtual void draw();
+  virtual void update(float deltaTime);
 
   sf::RenderWindow* getWindow();
   InputManager* getInputManager();
 
   void setGame(Game *n_game);
-private:
+protected:
   ObjectManager om;
   UIManager uim;
 

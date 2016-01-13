@@ -1,8 +1,8 @@
 #include "Widget.hpp"
 
 namespace UI {
-  Widget::Widget(Game *g, sf::Vector2f size, sf::Texture& tex, sf::Vector2i spriteCount)
-    : Object(g, size, tex, spriteCount) {
+  Widget::Widget(sf::Vector2f size, sf::Texture& tex, sf::Vector2i spriteCount)
+    : Object(size, tex, spriteCount) {
 
   }
 

@@ -9,12 +9,13 @@ all: game
 
 game: $(OF)main.o $(OF)Object.o $(OF)Resources.o $(OF)Widget.o \
 			$(OF)Game.o $(OF)InputManager.o  $(OF)SceneManager.o  $(OF)Scene.o\
-			$(OF)ObjectManager.o  $(OF)UIManager.o
+			$(OF)ObjectManager.o  $(OF)UIManager.o $(OF)TestObject.o $(OF)TestMenuScene.o
 	$(CC) -o $(BIN) $(LIBS) $(STD)\
 					$(OF)main.o $(OF)Object.o $(OF)Resources.o \
 					$(OF)Widget.o $(OF)Game.o $(OF)InputManager.o\
 					$(OF)SceneManager.o  $(OF)Scene.o\
-					$(OF)ObjectManager.o  $(OF)UIManager.o
+					$(OF)ObjectManager.o  $(OF)UIManager.o\
+					$(OF)TestObject.o $(OF)TestMenuScene.o
 
 $(OF)main.o: main.cpp
 	$(CC) $(CFLAGS) main.cpp -o $(OF)main.o
@@ -49,6 +50,14 @@ $(OF)Widget.o: UI/Widget.cpp
 
 $(OF)UIManager.o: UI/UIManager.cpp
 	$(CC) $(CFLAGS) UI/UIManager.cpp -o $(OF)UIManager.o
+
+# GAME
+
+$(OF)TestObject.o: TestObject.cpp
+	$(CC) $(CFLAGS) TestObject.cpp -o $(OF)TestObject.o
+
+$(OF)TestMenuScene.o: TestMenuScene.cpp
+	$(CC) $(CFLAGS) TestMenuScene.cpp -o $(OF)TestMenuScene.o
 
 clean:
 	rm $(OF)*.o
