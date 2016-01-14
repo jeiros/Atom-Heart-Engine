@@ -1,68 +1,71 @@
 #ifndef __ATOMHEART_OBJECT_H__
 #define __ATOMHEART_OBJECT_H__
 
-#include "InputManager.hpp"
-
+// LIB INCLUDES
 #include <SFML/Graphics.hpp>
+#include <vector>
+#include <type_traits>
+
+// ENGINE INCLUDES
+#include "Component.hpp"
+#include "TypeId.hpp"
 
 class ObjectManager;
 class Scene;
 class Object {
 public:
-  // Constructor for object
   Object();
-  Object(sf::Vector2f size, sf::Texture& tex, sf::Vector2i spriteCount);
   ~Object();
 
-  // The game will call this method every frame so the object can update
   virtual void update(float deltaTime) = 0;
 
-  // The game will call this method every frame to draw the object
-  void draw();
+  void kill();
 
-  // Get the bounds of the object in View space
-  sf::FloatRect getGlobalBounds() const;
+  template <typename T, typename... Args>
+  T& addComponent(Args&&... args);
 
-  // Get the bounds of the object in Screen space
-  sf::FloatRect getScreenBounds() const;
+  template <typename T>
+  void removeComponent();
 
-  // Get the position of the object in View space
-  sf::Vector2f  getGlobalPosition() const;
+  template <typename T>
+  T& getComponent() const;
 
-  // Get the position of the object in Screen space
-  sf::Vector2f  getScreenPosition() const;
+  template <typename T>
+  bool hasComponent() const;
 
-  // Move the object to a view space position
-  void moveToGlobal(sf::Vector2f);
-
-  // Move the object to a screen space position
-  void moveToLocal(sf::Vector2f);
-
-  // Get Object size
-  sf::Vector2f getSize();
-
-  // Resize the object specifiying the new size
-  void resize(sf::Vector2f new_size);
-
-  // Resize the object specifiying a multiplier to the current size
-  void resize(float multiplier);
-
-  void setObjectManager(ObjectManager* n_om);
 protected:
-  sf::Vector2f position;
-  sf::Vector2f size;
+  void addComponent(Component* comp, TypeId tid);
+  void removeComponent(TypeId tid);
+  const Component& getComponent(TypeId tid) const;
+  bool hasComponent(TypeId tid) const;
 
-  sf::FloatRect bounds;
-
-  sf::Texture& tex;
-
-  sf::Vector2i spriteCount;
-  sf::Vector2i spriteNum;
-  sf::Sprite sprite;
-
-  ObjectManager *om;
-  Scene* scene;
-  InputManager* inputManager;
+  std::vector<Component*> components;
 };
 
+template <typename T, typename... Args>
+T& Object::addComponent(Args&&... args)
+{
+  static_assert(std::is_base_of<Component, T>(), "T is not a component, cannot add T to entity");
+  auto component = new T{std::forward<Args>(args)...};
+  addComponent(component, ClassTypeId<Component>::GetTypeId<T>());
+  return *component;
+}
+
+template <typename T>
+void Object::removeComponent() {
+  static_assert(std::is_base_of<Component, T>(), "T is not a component, cannot remove T from entity");
+  removeComponent(ClassTypeId<Component>::GetTypeId<T>());
+}
+
+template <typename T>
+T& Object::getComponent() const {
+  static_assert(std::is_base_of<Component, T>(), "T is not a component, cannot get T from entity");
+  return getComponent(ClassTypeId<Component>::GetTypeId<T>());
+}
+
+template <typename T>
+bool Object::hasComponent() const {
+  static_assert(std::is_base_of<Component, T>(), "T is not a component, cannot determine if entity has T");
+  return hasComponent(ClassTypeId<Component>::GetTypeId<T>());
+}
 #endif
