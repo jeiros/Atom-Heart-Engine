@@ -17,8 +17,6 @@ public:
   void drawScene();
   void updateScene(float deltaTime);
 
-  sf::RenderWindow* getWindow();
-  InputManager* getInputManager();
   void addScene(Scene *scene);
 
 private:

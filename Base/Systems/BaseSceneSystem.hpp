@@ -2,6 +2,7 @@
 #define __ATOMHEART_BASESCENESYSTEM__
 
 // LIB INCLUDES
+#include <unordered_map>
 
 // ENGINE INCLUDES
 #include "System.hpp"
@@ -14,7 +15,10 @@ public:
 
   void DrawScene();
   void UpdateScene(float deltaTime);
-  void AddScene(Scene *scene);
+  void AddScene(std::string name, Scene *scene);
+
+private:
+  std::unordered_map<std::string, Scene*> scenes;
 };
 
 #endif
