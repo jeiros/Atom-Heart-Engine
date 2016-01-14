@@ -1,7 +1,12 @@
 #ifndef __ATOMHEART_BASESTATESYSTEM__
 #define __ATOMHEART_BASESTATESYSTEM__
 
-class BaseStateSystem {
+// LIB INCLUDES
+
+// ENGINE INCLUDES
+#include "System.hpp"
+
+class BaseStateSystem : public System {
 public:
   BaseStateSystem();
   ~BaseStateSystem();

@@ -1,7 +1,12 @@
 #ifndef __ATOMHEART_BASEINPUTSYSTEM__
 #define __ATOMHEART_BASEINPUTSYSTEM__
 
-class BaseInputSystem {
+// LIB INCLUDES
+
+// ENGINE INCLUDES
+#include "System.hpp"
+
+class BaseInputSystem : public System{
 public:
   BaseInputSystem();
   ~BaseInputSystem();

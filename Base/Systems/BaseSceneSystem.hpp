@@ -1,7 +1,12 @@
 #ifndef __ATOMHEART_BASESCENESYSTEM__
 #define __ATOMHEART_BASESCENESYSTEM__
 
-class BaseSceneSystem {
+// LIB INCLUDES
+
+// ENGINE INCLUDES
+#include "System.hpp"
+
+class BaseSceneSystem : public System {
 public:
   BaseSceneSystem();
   ~BaseSceneSystem();
