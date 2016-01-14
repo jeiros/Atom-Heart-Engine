@@ -13,8 +13,8 @@ MAKEFILE      = Makefile
 CC            = gcc
 CXX           = g++
 DEFINES       = 
-CFLAGS        = -pipe -O2 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC $(DEFINES)
-CXXFLAGS      = -pipe -std=c++0x -O2 -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector-strong -fPIC $(DEFINES)
+CFLAGS        = -pipe -g -Wall -W -fPIC $(DEFINES)
+CXXFLAGS      = -pipe -std=c++0x -g -Wall -W -fPIC $(DEFINES)
 INCPATH       = -I. -I/usr/lib/qt/mkspecs/linux-g++
 QMAKE         = /usr/lib/qt/bin/qmake
 DEL_FILE      = rm -f
@@ -35,7 +35,7 @@ COMPRESS      = gzip -9f
 DISTNAME      = atom-heart-engine1.0.0
 DISTDIR = /home/marcecoll/Projects/Games/AtomHeartEngine/.tmp/atom-heart-engine1.0.0
 LINK          = g++
-LFLAGS        = -Wl,-O1 -Wl,-O1,--sort-common,--as-needed,-z,relro
+LFLAGS        = 
 LIBS          = $(SUBLIBS)  
 AR            = ar cqs
 RANLIB        = 
@@ -119,6 +119,11 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/default_pre.prf \
 		/usr/lib/qt/mkspecs/features/resolve_config.prf \
 		/usr/lib/qt/mkspecs/features/default_post.prf \
+		/usr/lib/qt/mkspecs/features/warn_on.prf \
+		/usr/lib/qt/mkspecs/features/testcase_targets.prf \
+		/usr/lib/qt/mkspecs/features/exceptions.prf \
+		/usr/lib/qt/mkspecs/features/yacc.prf \
+		/usr/lib/qt/mkspecs/features/lex.prf \
 		atom-heart-engine.pro Base/Game.hpp \
 		Base/InputManager.hpp \
 		Base/Object.hpp \
@@ -219,6 +224,11 @@ Makefile: atom-heart-engine.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr/li
 		/usr/lib/qt/mkspecs/features/default_pre.prf \
 		/usr/lib/qt/mkspecs/features/resolve_config.prf \
 		/usr/lib/qt/mkspecs/features/default_post.prf \
+		/usr/lib/qt/mkspecs/features/warn_on.prf \
+		/usr/lib/qt/mkspecs/features/testcase_targets.prf \
+		/usr/lib/qt/mkspecs/features/exceptions.prf \
+		/usr/lib/qt/mkspecs/features/yacc.prf \
+		/usr/lib/qt/mkspecs/features/lex.prf \
 		atom-heart-engine.pro
 	$(QMAKE) -o Makefile atom-heart-engine.pro
 /usr/lib/qt/mkspecs/features/spec_pre.prf:
@@ -268,6 +278,11 @@ Makefile: atom-heart-engine.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr/li
 /usr/lib/qt/mkspecs/features/default_pre.prf:
 /usr/lib/qt/mkspecs/features/resolve_config.prf:
 /usr/lib/qt/mkspecs/features/default_post.prf:
+/usr/lib/qt/mkspecs/features/warn_on.prf:
+/usr/lib/qt/mkspecs/features/testcase_targets.prf:
+/usr/lib/qt/mkspecs/features/exceptions.prf:
+/usr/lib/qt/mkspecs/features/yacc.prf:
+/usr/lib/qt/mkspecs/features/lex.prf:
 atom-heart-engine.pro:
 qmake: FORCE
 	@$(QMAKE) -o Makefile atom-heart-engine.pro
@@ -297,6 +312,14 @@ distclean: clean
 
 ####### Sub-libraries
 
+check: first
+
+compiler_yacc_decl_make_all:
+compiler_yacc_decl_clean:
+compiler_yacc_impl_make_all:
+compiler_yacc_impl_clean:
+compiler_lex_make_all:
+compiler_lex_clean:
 compiler_clean: 
 
 ####### Compile

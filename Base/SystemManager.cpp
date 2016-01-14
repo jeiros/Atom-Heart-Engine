@@ -1,12 +1,6 @@
 #include "SystemManager.hpp"
 
-SystemManager::SystemManager() {
-  systems = std::vector<System*>(sizeof(TypeId), nullptr);
-
-  InitializeBaseSystems();
-}
-
-SystemManager::~SystemManager() {}
+std::vector<System*> SystemManager::systems = std::vector<System*>(sizeof(TypeId), nullptr);
 
 void SystemManager::InitializeBaseSystems() {
   Register<BaseAudioSystem>();
@@ -21,10 +15,10 @@ void SystemManager::addSystem(System* sys, TypeId tid) {
   systems[tid] = sys;
 }
 
-const System& SystemManager::getSystem(TypeId tid) const {
+System& SystemManager::getSystem(TypeId tid) {
   return *systems[tid];
 }
 
-bool SystemManager::hasSystem(TypeId tid) const {
+bool SystemManager::hasSystem(TypeId tid) {
   return systems[tid] != nullptr;
 }

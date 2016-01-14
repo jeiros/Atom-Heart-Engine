@@ -16,29 +16,26 @@
 class System;
 class SystemManager {
 public:
-  SystemManager();
-  ~SystemManager();
-
-  void InitializeBaseSystems();
+  static void InitializeBaseSystems();
 
   template <typename T, typename... Args>
-  System& Register(Args&&... args);
+  static System& Register(Args&&... args);
 
   template <typename T>
-  System& Get() const;
+  static System& Get();
 
   template <typename T>
-  bool Has() const;
+  static bool Has();
 
 private:
-  void addSystem(System* sys, TypeId tid);
-  const System& getSystem(TypeId tid) const;
-  bool hasSystem(TypeId tid) const;
+  static void addSystem(System* sys, TypeId tid);
+  static System& getSystem(TypeId tid);
+  static bool hasSystem(TypeId tid);
 
   template <typename T>
-  TypeId getTypeIdByBaseSystem();
+  static TypeId getTypeIdByBaseSystem();
 
-  std::vector<System*> systems;
+  static std::vector<System*> systems;
 };
 
 template <typename T, typename... Args>
@@ -52,13 +49,13 @@ System& SystemManager::Register(Args&&... args) {
 }
 
 template <typename T>
-System& SystemManager::Get() const {
+System& SystemManager::Get(){
   static_assert(std::is_base_of<System, T>(), "T is not a System, cannot be fetched from the SystemManager");
   return getSystem(ClassTypeId<System>::GetTypeId<T>());
 }
 
 template <typename T>
-bool SystemManager::Has() const {
+bool SystemManager::Has(){
   static_assert(std::is_base_of<System, T>(), "T is not a System, cannot be determined if the SystemManager has it");
   return hasSystem(ClassTypeId<System>::GetTypeId<T>());
 }

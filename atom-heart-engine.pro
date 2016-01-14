@@ -3,7 +3,11 @@ HEADERPATH = Base
 
 CONFIG += debug
 TEMPLATE = app
-CONFIG = console
+CONFIG += console
+CONFIG -= qt
+
+QT     -= gui core
+LIBS   -= -lQtGui -lQtCore
 
 QMAKE_CXXFLAGS += -std=c++0x
 
