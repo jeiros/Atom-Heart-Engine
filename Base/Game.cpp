@@ -6,7 +6,7 @@
 
 Game::Game(int scrwidth, int scrheight, std::string title, int style) :
   window(sf::VideoMode(scrwidth, scrheight), title, style),
-  inputManager(&window),
+  //inputManager(&window)
   sm(this)
 {
   Resources::load();
@@ -52,7 +52,8 @@ void Game::processEvents() {
       //TODO
       break;
     default:
-      inputManager.parseEvent(event);
+      //inputManager.parseEvent(event);
+      break;
     }
   }
 }

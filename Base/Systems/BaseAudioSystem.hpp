@@ -12,16 +12,16 @@ public:
   BaseAudioSystem();
   ~BaseAudioSystem();
 
-  virtual void PlaySound();
-  virtual void PlayMusic();
-  virtual void StopMusic();
-  virtual void PauseMusic();
-  virtual void SetLoop();
-  virtual void SetPitch();
-  virtual void SetVolume();
-  virtual void SetPosition();
-  virtual void SetGlobalSoundVolume();
-  virtual void SetGlobalMusicVolume();
+  void PlaySound();
+  void PlayMusic();
+  void StopMusic();
+  void PauseMusic();
+  void SetLoop();
+  void SetPitch();
+  void SetVolume();
+  void SetPosition();
+  void SetGlobalSoundVolume();
+  void SetGlobalMusicVolume();
 
 private:
 };
