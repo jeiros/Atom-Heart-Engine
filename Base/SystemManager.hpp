@@ -19,6 +19,8 @@ public:
   SystemManager();
   ~SystemManager();
 
+  void InitializeBaseSystems();
+
   template <typename T, typename... Args>
   System& Register(Args&&... args);
 
