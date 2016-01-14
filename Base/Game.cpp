@@ -1,14 +1,15 @@
-#include "Game.hpp"
-#include "Resources.hpp"
-
+// LIB INCLUDES
 #include <string>
 #include <iostream>
 
-Game::Game(int scrwidth, int scrheight, std::string title, int style) :
-  window(sf::VideoMode(scrwidth, scrheight), title, style),
-  //inputManager(&window)
-  sm(this)
+// ENGINE INCLUDES
+#include "Game.hpp"
+#include "Resources.hpp"
+#include "SystemManager.hpp"
+
+Game::Game(int scrwidth, int scrheight, std::string title, int style)
 {
+  SystemManager::InitializeBaseSystems();
   Resources::load();
 }
 
@@ -21,7 +22,7 @@ void Game::run() {
   sf::Clock c;
   srand(time(0));
 
-  while (window.isOpen()) {
+  while (SystemManager::Get<BaseRenderSystem>().GetMainWindow().isOpen()) {
     float deltaTime = c.restart().asSeconds();
 
     processEvents();
@@ -32,21 +33,21 @@ void Game::run() {
 }
 
 void Game::render() {
-  window.clear();
-  sm.drawScene();
-  window.display();
+  SystemManager::Get<BaseRenderSystem>().clear();
+  SystemManager::Get<BaseSceneSystem>().DrawScene();
+  SystemManager::Get<BaseRenderSystem>().display();
 }
 
 void Game::update(float deltaTime) {
-  sm.updateScene(deltaTime);
+  SystemManager::Get<BaseSceneSystem>().UpdateScene(deltaTime);
 }
 
 void Game::processEvents() {
   sf::Event event;
-  while(window.pollEvent(event)) {
+  while(SystemManager::Get<BaseRenderSystem>().GetMainWindow().pollEvent(event)) {
     switch(event.type) {
     case sf::Event::Closed:
-      window.close();
+      SystemManager::Get<BaseRenderSystem>().GetMainWindow().close();
       break;
     case sf::Event::Resized:
       //TODO
@@ -59,17 +60,7 @@ void Game::processEvents() {
 }
 
 void Game::addScene(Scene *scene) {
-  scene->setGame(this);
-  sm.addScene(scene);
-  std::cout << "game" << std::endl;
-}
-
-InputManager* Game::getInputManager() {
-  return &inputManager;
-}
-
-sf::RenderWindow* Game::getWindow() {
-  return &window;
+  SystemManager::Get<BaseSceneSystem>().AddScene(scene);
 }
 
 void Game::setTimeStep(float n_timestep) {

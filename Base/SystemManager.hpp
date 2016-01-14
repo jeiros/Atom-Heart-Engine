@@ -19,10 +19,10 @@ public:
   static void InitializeBaseSystems();
 
   template <typename T, typename... Args>
-  static System& Register(Args&&... args);
+  static T& Register(Args&&... args);
 
   template <typename T>
-  static System& Get();
+  static T& Get();
 
   template <typename T>
   static bool Has();
@@ -39,8 +39,9 @@ private:
 };
 
 template <typename T, typename... Args>
-System& SystemManager::Register(Args&&... args) {
-  static_assert(std::is_base_of<System, T>(), "T is not a System, cannot be registered with the SystemManager");
+T& SystemManager::Register(Args&&... args) {
+  static_assert(std::is_base_of<System, T>(),
+                "T is not a System, cannot be registered with the SystemManager");
   auto system = new T{std::forward<Args>(args)...};
   TypeId tid;
   tid = getTypeIdByBaseSystem<T>();
@@ -49,14 +50,16 @@ System& SystemManager::Register(Args&&... args) {
 }
 
 template <typename T>
-System& SystemManager::Get(){
-  static_assert(std::is_base_of<System, T>(), "T is not a System, cannot be fetched from the SystemManager");
-  return getSystem(ClassTypeId<System>::GetTypeId<T>());
+T& SystemManager::Get(){
+  static_assert(std::is_base_of<System, T>(),
+                "T is not a System, cannot be fetched from the SystemManager");
+  return getSystem(getTypeIdByBaseSystem<T>());
 }
 
 template <typename T>
 bool SystemManager::Has(){
-  static_assert(std::is_base_of<System, T>(), "T is not a System, cannot be determined if the SystemManager has it");
+  static_assert(std::is_base_of<System, T>(),
+                "T is not a System, cannot be determined if the SystemManager has it");
   return hasSystem(ClassTypeId<System>::GetTypeId<T>());
 }
 

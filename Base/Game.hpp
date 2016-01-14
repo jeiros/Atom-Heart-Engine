@@ -1,11 +1,12 @@
 #ifndef __ATOMHEART_GAME_H__
 #define __ATOMHEART_GAME_H__
 
-#include "InputManager.hpp"
-#include "SceneManager.hpp"
+// LIB INCLUDES
+#include <string>
 
-#include <SFML/Graphics.hpp>
+// ENGINE INCLUDES 
 
+class Scene;
 class Game
 {
  public:
@@ -14,16 +15,9 @@ class Game
 
   void run();
 
-  InputManager*       getInputManager();
-  sf::RenderWindow*   getWindow();
-
   void setTimeStep(float n_timestep);
   void addScene(Scene *scene);
 private:
-  SceneManager sm;
-  InputManager        inputManager;
-  sf::RenderWindow    window;
-
   float timeStep;
 
   void render();
