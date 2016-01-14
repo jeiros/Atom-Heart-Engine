@@ -2,7 +2,7 @@ CC=g++
 STD=-std=c++0x
 CFLAGS=-c -Wall -Wpedantic -pedantic-errors -fpermissive -g -rdynamic -Wextra $(STD)
 BIN=bin/game.x
-LIBS=-lsfml-graphics -lsfml-window -lsfml-system
+LIBS=-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 OF=bin/object/
 
 all: game
