@@ -59,8 +59,8 @@ void Game::processEvents() {
   }
 }
 
-void Game::addScene(Scene *scene) {
-  SystemManager::Get<BaseSceneSystem>().AddScene(scene);
+void Game::addScene(std::string name, Scene *scene) {
+  SystemManager::Get<BaseSceneSystem>().AddScene(name, scene);
 }
 
 void Game::setTimeStep(float n_timestep) {

@@ -60,7 +60,7 @@ void Object::removeComponent() {
 template <typename T>
 T& Object::getComponent() const {
   static_assert(std::is_base_of<Component, T>(), "T is not a component, cannot get T from entity");
-  return getComponent(ClassTypeId<Component>::GetTypeId<T>());
+  return TgetComponent(ClassTypeId<Component>::GetTypeId<T>());
 }
 
 template <typename T>

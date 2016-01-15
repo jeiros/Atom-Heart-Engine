@@ -46,14 +46,14 @@ T& SystemManager::Register(Args&&... args) {
   TypeId tid;
   tid = getTypeIdByBaseSystem<T>();
   addSystem(system, tid);
-  return system;
+  return *system;
 }
 
 template <typename T>
 T& SystemManager::Get(){
   static_assert(std::is_base_of<System, T>(),
                 "T is not a System, cannot be fetched from the SystemManager");
-  return getSystem(getTypeIdByBaseSystem<T>());
+  return (T&)getSystem(getTypeIdByBaseSystem<T>());
 }
 
 template <typename T>

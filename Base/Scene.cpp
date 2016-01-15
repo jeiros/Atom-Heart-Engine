@@ -21,14 +21,6 @@ void Scene::update(float deltaTime) {
   uim.update(deltaTime);
 }
 
-sf::RenderWindow* Scene::getWindow() {
-  return game->getWindow();
-}
-
-InputManager* Scene::getInputManager() {
-  return game->getInputManager();
-}
-
 void Scene::setGame(Game *n_game) {
   game = n_game;
   om.setGame(n_game);
