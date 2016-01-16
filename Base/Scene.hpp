@@ -10,15 +10,12 @@ public:
   Scene();
   ~Scene();
 
-  virtual void draw();
-  virtual void update(float deltaTime);
+  virtual void Draw();
+  virtual void Update(float deltaTime);
 
-  void setGame(Game *n_game);
 protected:
   ObjectManager om;
   UIManager uim;
-
-  Game *game;
 };
 
 #endif

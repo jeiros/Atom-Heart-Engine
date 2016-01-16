@@ -15,9 +15,11 @@ public:
 
   void DrawScene();
   void UpdateScene(float deltaTime);
+  void SwitchTo(std::string name);
   void AddScene(std::string name, Scene *scene);
 
 private:
+  Scene* current_scene;
   std::unordered_map<std::string, Scene*> scenes;
 };
 
