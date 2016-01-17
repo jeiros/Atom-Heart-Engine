@@ -1,7 +1,13 @@
-#Atom Heart Microengine v0.1a
+#Atom Heart Microengine v0.3a
 
-This is a small C++/SFML game engine (or a scaffolding really)
+Small data-oriented 2D game engine written in C++ and SFML.
 
-Not really ready for use, I'm still testing things, it's in a early alpha stage, things can change a lot.
+Not ready for any kind of use yet. I'm changing design and architecture on a daily basis.
 
-No documentation available for now
+##Architecture
+
+Data-oriented design for fast, multithreaded game execution. Based on Entity-Component system, with a central modular systems manager.
+
+##TODO
+
+Well, mostly everything. Have to write the base systems and components.
