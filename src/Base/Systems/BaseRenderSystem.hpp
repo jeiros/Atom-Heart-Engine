@@ -9,7 +9,7 @@
 
 class BaseRenderSystem : public System {
 public:
-  BaseRenderSystem();
+  BaseRenderSystem(int scrwidth, int scrheight, std::string title);
   ~BaseRenderSystem();
 
   void clear();
