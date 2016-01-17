@@ -12,10 +12,10 @@ Scene::~Scene() {}
 
 void Scene::Draw() {
   //em.draw();
-  uim.draw();
+  //uim.draw();
 }
 
 void Scene::Update(float deltaTime) {
   //em.update(deltaTime);
-  uim.update(deltaTime);
+  //uim.update(deltaTime);
 }

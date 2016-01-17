@@ -8,6 +8,7 @@ CONFIG -= qt
 
 QT     -= gui core
 LIBS   -= -lQtGui -lQtCore
+LIBS   += -lsfml-graphics -lsfml-window -lsfml-system
 
 QMAKE_CXXFLAGS += -std=c++0x
 

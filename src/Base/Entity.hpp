@@ -17,8 +17,8 @@ class EntityManager;
 class Entity {
   friend class EntityManager;
 public:
-  Entity();
-  ~Entity();
+  Entity() {};
+  ~Entity() {};
 
   EntityID id() const {return eid;}
   uint32_t index() const {return eid & ENTITY_INDEX_MASK;}

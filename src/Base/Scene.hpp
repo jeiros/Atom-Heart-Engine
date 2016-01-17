@@ -4,7 +4,6 @@
 // LIB INCLUDES
 
 // ENGINE INCLUDES
-#include "../UI/UIManager.hpp"
 #include "EntityManager.hpp"
 
 class Game;
@@ -18,7 +17,6 @@ public:
 
 protected:
   EntityManager em;
-  UIManager uim;
 };
 
 #endif

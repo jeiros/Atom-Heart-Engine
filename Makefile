@@ -36,7 +36,7 @@ DISTNAME      = atom-heart-engine1.0.0
 DISTDIR = /home/marcecoll/Projects/Games/AtomHeartEngine/.tmp/atom-heart-engine1.0.0
 LINK          = g++
 LFLAGS        = 
-LIBS          = $(SUBLIBS)  
+LIBS          = $(SUBLIBS) -lsfml-graphics -lsfml-window -lsfml-system 
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -328,7 +328,8 @@ Game.o: src/Base/Game.cpp src/Base/Game.hpp \
 		src/Base/Systems/System.hpp \
 		src/Base/Systems/BaseSceneSystem.hpp \
 		src/Base/Scene.hpp \
-		src/UI/UIManager.hpp \
+		src/Base/EntityManager.hpp \
+		src/Base/Entity.hpp \
 		src/Base/Systems/BaseRenderSystem.hpp \
 		src/Base/Systems/BaseInputSystem.hpp \
 		src/Base/Systems/BaseDataSystem.hpp \
@@ -340,6 +341,8 @@ EntityManager.o: src/Base/EntityManager.cpp src/Base/EntityManager.hpp \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EntityManager.o src/Base/EntityManager.cpp
 
 Scene.o: src/Base/Scene.cpp src/Base/Scene.hpp \
+		src/Base/EntityManager.hpp \
+		src/Base/Entity.hpp \
 		src/UI/UIManager.hpp \
 		src/Base/Game.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Scene.o src/Base/Scene.cpp
@@ -350,7 +353,8 @@ SystemManager.o: src/Base/SystemManager.cpp src/Base/SystemManager.hpp \
 		src/Base/Systems/System.hpp \
 		src/Base/Systems/BaseSceneSystem.hpp \
 		src/Base/Scene.hpp \
-		src/UI/UIManager.hpp \
+		src/Base/EntityManager.hpp \
+		src/Base/Entity.hpp \
 		src/Base/Systems/BaseRenderSystem.hpp \
 		src/Base/Systems/BaseInputSystem.hpp \
 		src/Base/Systems/BaseDataSystem.hpp \
@@ -383,7 +387,8 @@ BaseStateSystem.o: src/Base/Systems/BaseStateSystem.cpp src/Base/Systems/BaseSta
 BaseSceneSystem.o: src/Base/Systems/BaseSceneSystem.cpp src/Base/Systems/BaseSceneSystem.hpp \
 		src/Base/Systems/System.hpp \
 		src/Base/Scene.hpp \
-		src/UI/UIManager.hpp
+		src/Base/EntityManager.hpp \
+		src/Base/Entity.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseSceneSystem.o src/Base/Systems/BaseSceneSystem.cpp
 
 ####### Install
