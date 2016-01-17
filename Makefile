@@ -48,22 +48,19 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = Base/Game.cpp \
-		Base/InputManager.cpp \
-		Base/Object.cpp \
-		Base/ObjectManager.cpp \
-		Base/Scene.cpp \
-		Base/SystemManager.cpp \
-		Base/Systems/System.cpp \
-		Base/Systems/BaseAudioSystem.cpp \
-		Base/Systems/BaseDataSystem.cpp \
-		Base/Systems/BaseInputSystem.cpp \
-		Base/Systems/BaseRenderSystem.cpp \
-		Base/Systems/BaseStateSystem.cpp 
+SOURCES       = src/Base/Game.cpp \
+		src/Base/EntityManager.cpp \
+		src/Base/Scene.cpp \
+		src/Base/SystemManager.cpp \
+		src/Base/Systems/System.cpp \
+		src/Base/Systems/BaseAudioSystem.cpp \
+		src/Base/Systems/BaseDataSystem.cpp \
+		src/Base/Systems/BaseInputSystem.cpp \
+		src/Base/Systems/BaseRenderSystem.cpp \
+		src/Base/Systems/BaseStateSystem.cpp \
+		src/Base/Systems/BaseSceneSystem.cpp 
 OBJECTS       = Game.o \
-		InputManager.o \
-		Object.o \
-		ObjectManager.o \
+		EntityManager.o \
 		Scene.o \
 		SystemManager.o \
 		System.o \
@@ -71,7 +68,8 @@ OBJECTS       = Game.o \
 		BaseDataSystem.o \
 		BaseInputSystem.o \
 		BaseRenderSystem.o \
-		BaseStateSystem.o
+		BaseStateSystem.o \
+		BaseSceneSystem.o
 DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/common/unix.conf \
 		/usr/lib/qt/mkspecs/common/linux.conf \
@@ -124,29 +122,28 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		atom-heart-engine.pro Base/Game.hpp \
-		Base/InputManager.hpp \
-		Base/Object.hpp \
-		Base/ObjectManager.hpp \
-		Base/Scene.hpp \
-		Base/SystemManager.hpp \
-		Base/Systems/System.hpp \
-		Base/Systems/BaseAudioSystem.hpp \
-		Base/Systems/BaseDataSystem.hpp \
-		Base/Systems/BaseInputSystem.hpp \
-		Base/Systems/BaseRenderSystem.hpp \
-		Base/Systems/BaseStateSystem.hpp Base/Game.cpp \
-		Base/InputManager.cpp \
-		Base/Object.cpp \
-		Base/ObjectManager.cpp \
-		Base/Scene.cpp \
-		Base/SystemManager.cpp \
-		Base/Systems/System.cpp \
-		Base/Systems/BaseAudioSystem.cpp \
-		Base/Systems/BaseDataSystem.cpp \
-		Base/Systems/BaseInputSystem.cpp \
-		Base/Systems/BaseRenderSystem.cpp \
-		Base/Systems/BaseStateSystem.cpp
+		atom-heart-engine.pro src/Base/Game.hpp \
+		src/Base/Entity.hpp \
+		src/Base/EntityManager.hpp \
+		src/Base/Scene.hpp \
+		src/Base/SystemManager.hpp \
+		src/Base/Systems/System.hpp \
+		src/Base/Systems/BaseAudioSystem.hpp \
+		src/Base/Systems/BaseDataSystem.hpp \
+		src/Base/Systems/BaseInputSystem.hpp \
+		src/Base/Systems/BaseRenderSystem.hpp \
+		src/Base/Systems/BaseStateSystem.hpp \
+		src/Base/Systems/BaseSceneSystem.hpp src/Base/Game.cpp \
+		src/Base/EntityManager.cpp \
+		src/Base/Scene.cpp \
+		src/Base/SystemManager.cpp \
+		src/Base/Systems/System.cpp \
+		src/Base/Systems/BaseAudioSystem.cpp \
+		src/Base/Systems/BaseDataSystem.cpp \
+		src/Base/Systems/BaseInputSystem.cpp \
+		src/Base/Systems/BaseRenderSystem.cpp \
+		src/Base/Systems/BaseStateSystem.cpp \
+		src/Base/Systems/BaseSceneSystem.cpp
 QMAKE_TARGET  = atom-heart-engine
 DESTDIR       = #avoid trailing-slash linebreak
 TARGET        = atom-heart-engine
@@ -324,81 +321,70 @@ compiler_clean:
 
 ####### Compile
 
-Game.o: Base/Game.cpp Base/Game.hpp \
-		Base/InputManager.hpp \
-		Base/SceneManager.hpp \
-		Base/Scene.hpp \
-		Base/ObjectManager.hpp \
-		Base/Object.hpp \
-		Base/Component.hpp \
-		Base/TypeId.hpp \
-		UI/UIManager.hpp \
-		Base/Resources.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Game.o Base/Game.cpp
+Game.o: src/Base/Game.cpp src/Base/Game.hpp \
+		src/Base/SystemManager.hpp \
+		src/Base/TypeId.hpp \
+		src/Base/Systems/BaseAudioSystem.hpp \
+		src/Base/Systems/System.hpp \
+		src/Base/Systems/BaseSceneSystem.hpp \
+		src/Base/Scene.hpp \
+		src/UI/UIManager.hpp \
+		src/Base/Systems/BaseRenderSystem.hpp \
+		src/Base/Systems/BaseInputSystem.hpp \
+		src/Base/Systems/BaseDataSystem.hpp \
+		src/Base/Systems/BaseStateSystem.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Game.o src/Base/Game.cpp
 
-InputManager.o: Base/InputManager.cpp Base/InputManager.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o InputManager.o Base/InputManager.cpp
+EntityManager.o: src/Base/EntityManager.cpp src/Base/EntityManager.hpp \
+		src/Base/Entity.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o EntityManager.o src/Base/EntityManager.cpp
 
-Object.o: Base/Object.cpp Base/Object.hpp \
-		Base/Component.hpp \
-		Base/TypeId.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Object.o Base/Object.cpp
+Scene.o: src/Base/Scene.cpp src/Base/Scene.hpp \
+		src/UI/UIManager.hpp \
+		src/Base/Game.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Scene.o src/Base/Scene.cpp
 
-ObjectManager.o: Base/ObjectManager.cpp Base/ObjectManager.hpp \
-		Base/Object.hpp \
-		Base/Component.hpp \
-		Base/TypeId.hpp \
-		Base/Game.hpp \
-		Base/InputManager.hpp \
-		Base/SceneManager.hpp \
-		Base/Scene.hpp \
-		UI/UIManager.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ObjectManager.o Base/ObjectManager.cpp
+SystemManager.o: src/Base/SystemManager.cpp src/Base/SystemManager.hpp \
+		src/Base/TypeId.hpp \
+		src/Base/Systems/BaseAudioSystem.hpp \
+		src/Base/Systems/System.hpp \
+		src/Base/Systems/BaseSceneSystem.hpp \
+		src/Base/Scene.hpp \
+		src/UI/UIManager.hpp \
+		src/Base/Systems/BaseRenderSystem.hpp \
+		src/Base/Systems/BaseInputSystem.hpp \
+		src/Base/Systems/BaseDataSystem.hpp \
+		src/Base/Systems/BaseStateSystem.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SystemManager.o src/Base/SystemManager.cpp
 
-Scene.o: Base/Scene.cpp Base/Scene.hpp \
-		Base/ObjectManager.hpp \
-		Base/Object.hpp \
-		Base/Component.hpp \
-		Base/TypeId.hpp \
-		UI/UIManager.hpp \
-		Base/Game.hpp \
-		Base/InputManager.hpp \
-		Base/SceneManager.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Scene.o Base/Scene.cpp
+System.o: src/Base/Systems/System.cpp src/Base/Systems/System.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o System.o src/Base/Systems/System.cpp
 
-SystemManager.o: Base/SystemManager.cpp Base/SystemManager.hpp \
-		Base/TypeId.hpp \
-		Base/Systems/BaseAudioSystem.hpp \
-		Base/Systems/System.hpp \
-		Base/Systems/BaseSceneSystem.hpp \
-		Base/Systems/BaseRenderSystem.hpp \
-		Base/Systems/BaseInputSystem.hpp \
-		Base/Systems/BaseDataSystem.hpp \
-		Base/Systems/BaseStateSystem.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o SystemManager.o Base/SystemManager.cpp
+BaseAudioSystem.o: src/Base/Systems/BaseAudioSystem.cpp src/Base/Systems/BaseAudioSystem.hpp \
+		src/Base/Systems/System.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseAudioSystem.o src/Base/Systems/BaseAudioSystem.cpp
 
-System.o: Base/Systems/System.cpp Base/Systems/System.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o System.o Base/Systems/System.cpp
+BaseDataSystem.o: src/Base/Systems/BaseDataSystem.cpp src/Base/Systems/BaseDataSystem.hpp \
+		src/Base/Systems/System.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseDataSystem.o src/Base/Systems/BaseDataSystem.cpp
 
-BaseAudioSystem.o: Base/Systems/BaseAudioSystem.cpp Base/Systems/BaseAudioSystem.hpp \
-		Base/Systems/System.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseAudioSystem.o Base/Systems/BaseAudioSystem.cpp
+BaseInputSystem.o: src/Base/Systems/BaseInputSystem.cpp src/Base/Systems/BaseInputSystem.hpp \
+		src/Base/Systems/System.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseInputSystem.o src/Base/Systems/BaseInputSystem.cpp
 
-BaseDataSystem.o: Base/Systems/BaseDataSystem.cpp Base/Systems/BaseDataSystem.hpp \
-		Base/Systems/System.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseDataSystem.o Base/Systems/BaseDataSystem.cpp
+BaseRenderSystem.o: src/Base/Systems/BaseRenderSystem.cpp src/Base/Systems/BaseRenderSystem.hpp \
+		src/Base/Systems/System.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseRenderSystem.o src/Base/Systems/BaseRenderSystem.cpp
 
-BaseInputSystem.o: Base/Systems/BaseInputSystem.cpp Base/Systems/BaseInputSystem.hpp \
-		Base/Systems/System.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseInputSystem.o Base/Systems/BaseInputSystem.cpp
+BaseStateSystem.o: src/Base/Systems/BaseStateSystem.cpp src/Base/Systems/BaseStateSystem.hpp \
+		src/Base/Systems/System.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseStateSystem.o src/Base/Systems/BaseStateSystem.cpp
 
-BaseRenderSystem.o: Base/Systems/BaseRenderSystem.cpp Base/Systems/BaseRenderSystem.hpp \
-		Base/Systems/System.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseRenderSystem.o Base/Systems/BaseRenderSystem.cpp
-
-BaseStateSystem.o: Base/Systems/BaseStateSystem.cpp Base/Systems/BaseStateSystem.hpp \
-		Base/Systems/System.hpp
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseStateSystem.o Base/Systems/BaseStateSystem.cpp
+BaseSceneSystem.o: src/Base/Systems/BaseSceneSystem.cpp src/Base/Systems/BaseSceneSystem.hpp \
+		src/Base/Systems/System.hpp \
+		src/Base/Scene.hpp \
+		src/UI/UIManager.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o BaseSceneSystem.o src/Base/Systems/BaseSceneSystem.cpp
 
 ####### Install
 

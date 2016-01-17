@@ -4,13 +4,11 @@
 
 // ENGINE INCLUDES
 #include "Game.hpp"
-#include "Resources.hpp"
 #include "SystemManager.hpp"
 
 Game::Game(int scrwidth, int scrheight, std::string title, int style)
 {
   SystemManager::InitializeBaseSystems();
-  Resources::load();
 }
 
 Game::~Game(){}

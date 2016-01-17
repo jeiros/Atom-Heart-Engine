@@ -1,28 +1,21 @@
 #include "Scene.hpp"
-#include "ObjectManager.hpp"
 #include "../UI/UIManager.hpp"
 #include "Game.hpp"
 
 #include <iostream>
 
 Scene::Scene() :
-  om(nullptr)
+  em()
 {}
 
 Scene::~Scene() {}
 
-void Scene::draw() {
-  om.draw();
+void Scene::Draw() {
+  //em.draw();
   uim.draw();
 }
 
-void Scene::update(float deltaTime) {
-  om.update(deltaTime);
+void Scene::Update(float deltaTime) {
+  //em.update(deltaTime);
   uim.update(deltaTime);
-}
-
-void Scene::setGame(Game *n_game) {
-  game = n_game;
-  om.setGame(n_game);
-  //uim.setGame(n_game);
 }

@@ -1,8 +1,11 @@
 #ifndef __ATOMHEART_SCENE__
 #define __ATOMHEART_SCENE__
 
-#include "ObjectManager.hpp"
+// LIB INCLUDES
+
+// ENGINE INCLUDES
 #include "../UI/UIManager.hpp"
+#include "EntityManager.hpp"
 
 class Game;
 class Scene {
@@ -14,7 +17,7 @@ public:
   virtual void Update(float deltaTime);
 
 protected:
-  ObjectManager om;
+  EntityManager em;
   UIManager uim;
 };
 
