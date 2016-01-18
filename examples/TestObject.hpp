@@ -1,14 +1,12 @@
 #ifndef TESTOBJECT
 #define TESTOBJECT
 
-#include "Base/Object.hpp"
+#include "../src/Base/Entity.hpp"
 
-class TestObject : public Object {
+class TestObject : public Entity {
 public:
   TestObject();
   ~TestObject();
-
-  virtual void update(float deltaTime);
 };
 
 #endif

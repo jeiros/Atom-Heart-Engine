@@ -17,6 +17,7 @@ class Game
 
   void setTimeStep(float n_timestep);
   void addScene(std::string name, Scene *scene);
+  void setInitialScene(std::string name);
 private:
   float timeStep;
 

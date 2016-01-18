@@ -10,7 +10,7 @@ class Game;
 class Scene {
 public:
   Scene();
-  ~Scene();
+  virtual ~Scene();
 
   virtual void Draw();
   virtual void Update(float deltaTime);

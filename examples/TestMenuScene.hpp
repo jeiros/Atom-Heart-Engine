@@ -1,7 +1,7 @@
 #ifndef TESTMENUSCENE
 #define TESTMENUSCENE
 
-#include "Base/Scene.hpp"
+#include "../src/Base/Scene.hpp"
 
 class TestMenuScene : public Scene {
 public:
@@ -9,7 +9,7 @@ public:
   ~TestMenuScene();
 
   virtual void draw();
-  virtual void update(float deltaTime);
+  virtual void update();
 };
 
 #endif

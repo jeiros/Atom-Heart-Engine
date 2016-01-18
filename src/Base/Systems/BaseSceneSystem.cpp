@@ -1,8 +1,15 @@
+// LIB INCLUDES
+#include <algorithm>
+
+// ENGINE INCLUDES
 #include "BaseSceneSystem.hpp"
 
 BaseSceneSystem::BaseSceneSystem() {}
 
-BaseSceneSystem::~BaseSceneSystem() {}
+BaseSceneSystem::~BaseSceneSystem() {
+  std::for_each(scenes.begin(), scenes.end(),
+                [](std::pair<const std::string, Scene*> p){ delete p.second; });
+}
 
 void BaseSceneSystem::DrawScene() {
   current_scene->Draw();

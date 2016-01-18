@@ -11,3 +11,5 @@ Data-oriented design for fast, multithreaded game execution. Based on Entity-Com
 ##TODO
 
 Well, mostly everything. Have to write the base systems and components.
+
+Temporal everyday-changing documentation can be found at http://debenoprma.github.io/Atom-Heart-Engine-Documentation/annotated.html
