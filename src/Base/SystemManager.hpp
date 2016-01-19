@@ -14,16 +14,41 @@
 #include "Systems/BaseStateSystem.hpp"
 
 class System;
+/*!
+  \class SystemManager
+  \brief Manages Game System (s) in a modular way
+ */
 class SystemManager {
 public:
+  /*!
+    Initialize base default systems to have a working environment
+   */
   static void InitializeBaseSystems();
 
+  /*!
+    Register System with the SystemManager, if it derives from one
+    of the base systems it will replace it. It is a templated
+    variadic function. All arguments will get passed onto the system.
+    Will throw compile time error if T is not deriving from System.
+    @param args Arguments for the System T
+    @return Reference to the System T
+   */
   template <typename T, typename... Args>
   static T& Register(Args&&... args);
 
+  /*!
+    Get System. Will throw compile time error if T is not deriving
+    from System.
+    @return Reference to the System T
+   */
   template <typename T>
   static T& Get();
 
+  /*!
+    Check if the SystemManager has the System T. Will throw compile
+    time error if T is not deriving from System
+    @return If the SystemManager has the System T
+   */
   template <typename T>
   static bool Has();
 

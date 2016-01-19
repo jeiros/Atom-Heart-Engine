@@ -6,14 +6,28 @@
 // ENGINE INCLUDES
 #include "EntityManager.hpp"
 
-class Game;
+/*!
+  \class Scene
+  \brief Each Scene represents a different world, with different Entity (ies)
+ */
 class Scene {
 public:
+  /*!
+    Constructor
+  */
   Scene();
+
+  /*!
+    Destructor.
+    Must override
+  */
   virtual ~Scene();
 
-  virtual void Draw();
-  virtual void Update(float deltaTime);
+  /*!
+    Update scene data.
+    @param deltaTime Amount of time since last execution
+   */
+  virtual void update(float deltaTime);
 
 protected:
   EntityManager em;

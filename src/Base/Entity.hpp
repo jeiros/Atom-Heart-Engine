@@ -16,12 +16,10 @@ const uint32_t ENTITY_GENERATION_MASK = (1 << ENTITY_GENERATION_BITS) - 1;
 
 /*!
   \class Entity
-  \brief Entity base class, don't extend this class
-         except for adding components in its initialization.
-         Never add more data to a class that extends from this one.
+  \brief Entity base class
  */
 class EntityManager;
-class Entity {
+class Entity final {
   friend class EntityManager;
 
 private:
