@@ -6,7 +6,10 @@
 #include "Game.hpp"
 #include "SystemManager.hpp"
 
-Game::Game(int scrwidth, int scrheight, std::string title, int style)
+Game::Game(int scrwidth, int scrheight, std::string title, int style) :
+  _window(SystemManager::Get<BaseRenderSystem>().GetMainWindow()),
+  _inputSystem(SystemManager::Get<BaseInputSystem>()),
+  _renderSystem(SystemManager::Get<BaseRenderSystem>())
 {
   SystemManager::InitializeBaseSystems();
 }
@@ -20,7 +23,7 @@ void Game::run() {
   sf::Clock c;
   srand(time(0));
 
-  while (SystemManager::Get<BaseRenderSystem>().GetMainWindow().isOpen()) {
+  while (_window.isOpen()) {
     float deltaTime = c.restart().asSeconds();
 
     processEvents();
@@ -38,20 +41,22 @@ void Game::render() {
 
 void Game::update(float deltaTime) {
   SystemManager::Get<BaseSceneSystem>().UpdateScene(deltaTime);
+  SystemManager::Get<BaseStateSystem>().UpdateState(deltaTime);
 }
 
 void Game::processEvents() {
   sf::Event event;
-  while(SystemManager::Get<BaseRenderSystem>().GetMainWindow().pollEvent(event)) {
+
+  while(_window.pollEvent(event)) {
     switch(event.type) {
     case sf::Event::Closed:
-      SystemManager::Get<BaseRenderSystem>().GetMainWindow().close();
+      _window.close();
       break;
     case sf::Event::Resized:
       //TODO
       break;
     default:
-      //inputManager.parseEvent(event);
+      //inputManager.ParseEvent(event);
       break;
     }
   }

@@ -3,8 +3,11 @@
 
 // LIB INCLUDES
 #include <string>
+#include <SFML/Graphics.hpp>
 
-// ENGINE INCLUDES 
+// ENGINE INCLUDES
+#include "Systems/BaseInputSystem.hpp"
+#include "Systems/BaseRenderSystem.hpp"
 
 class Scene;
 /*!
@@ -40,6 +43,9 @@ class Game
   void setInitialScene(std::string name);
 private:
   float timeStep;
+  sf::RenderWindow& _window;
+  BaseInputSystem& _inputSystem;
+  BaseRenderSystem& _renderSystem;
 
   void render();
   void update(float deltaTime);

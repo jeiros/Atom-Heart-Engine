@@ -2,21 +2,23 @@
 
 #include <SFML/Graphics.hpp>
 
-BaseRenderSystem::BaseRenderSystem(int scrwidth, int scrheight, std::string title)
-  : mainWindow(sf::VideoMode(scrwidth, scrheight), title)
+BaseRenderSystem::BaseRenderSystem()
 {
 }
 
 BaseRenderSystem::~BaseRenderSystem() {}
 
 void BaseRenderSystem::clear() {
-  mainWindow.clear();
+  _renderWindow->clear();
 }
 
 void BaseRenderSystem::display() {
-  mainWindow.display();
+  _renderWindow->display();
 }
 
-sf::RenderWindow& BaseRenderSystem::GetMainWindow() {
-  return mainWindow;
+void BaseRenderSystem::SetRenderWindow(sf::RenderWindow* w) {
+  _renderWindow = w;
+
+  _scrn_height = w->getSize().x;
+  _scrn_width = w->getSize().y;
 }

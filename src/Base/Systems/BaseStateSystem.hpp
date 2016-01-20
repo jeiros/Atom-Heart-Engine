@@ -10,6 +10,8 @@ class BaseStateSystem : public System {
 public:
   BaseStateSystem();
   ~BaseStateSystem();
+
+  void UpdateState(float deltaTime);
 };
 
 #endif

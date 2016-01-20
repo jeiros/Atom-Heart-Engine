@@ -9,16 +9,19 @@
 
 class BaseRenderSystem : public System {
 public:
-  BaseRenderSystem(int scrwidth, int scrheight, std::string title);
+  BaseRenderSystem();
   ~BaseRenderSystem();
 
   void clear();
   void display();
 
-  sf::RenderWindow& GetMainWindow();
+  void SetRenderWindow(sf::RenderWindow* w);
 
 private:
-  sf::RenderWindow mainWindow;
+  sf::RenderWindow* _renderWindow;
+
+  int _scrn_height;
+  int _scrn_width;
 };
 
 #endif

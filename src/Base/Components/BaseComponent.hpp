@@ -11,7 +11,6 @@ class BaseComponentManager {
   ~BaseComponentManager();
 
   virtual void update(float deltaTime);
-  void destroy(EntityID idx);
 };
 
 #endif
